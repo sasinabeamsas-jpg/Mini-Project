@@ -6,21 +6,112 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StockBite</title>
     <link rel="stylesheet" href="Style.css">
-    
+
 </head>
 
 <body>
-    <div class="container">
-        <img src="imges/img.png" alt="">
-        <div class="Box">
-            <p class="Head">Dashboard</p>
-            <p class="Small">สรุปรายรับ - รายจ่าย</p>
+    <div id="login-page">
+        <div class="auth-layout">
+            <div class="auth-card">
+                <img class="auth-logo" src="imges/img.png" alt="StockBite logo">
+                <h1 class="auth-title">StockBite</h1>
+                <p class="auth-subtitle">ล็อกอินเพื่อเข้าสู่ระบบสรุปรายรับ-รายจ่าย</p>
+                <label class="auth-label" for="login-email">อีเมล</label>
+                <input id="login-email" class="auth-input" type="email" placeholder="you@gmail.com">
+                <label class="auth-label" for="login-password">รหัสผ่าน</label>
+                <input id="login-password" class="auth-input" type="password" placeholder="••••••••">
+                <button class="auth-button" type="button" onclick="showPage('dashboard-page')">เข้าสู่ระบบ</button>
+            </div>
         </div>
-        <div class="Box">
-            
+    </div>
+    <div id="main-page" class="hidden">
+        <div class="container">
+            <img src="imges/img.png" alt="">
+            <div class="box-row">
+                <div class="Box" onclick="showPage('dashboard-page')">
+                    <p class="Head">Dashboard</p>
+                    <p class="Small">สรุปรายรับ - รายจ่าย</p>
+                </div>
+                <div class="Box" onclick="showPage('report-page')">
+                    <p class="Head">Report</p>
+                    <p class="Small">รายงานการขาย</p>
+                </div>
+                <div class="Box" onclick="showPage('more-page')">
+                    <p class="Head">More</p>
+                    <p class="Small">เพิ่มเติม</p>
+                </div>
+            </div>
         </div>
-        <div class="Box">
-            
+    </div>
+    <div id="dashboard-page" class="hidden">
+        <div class="layout">
+            <div class="sidebar">
+                <img src="imges/img.png" alt="">
+                <div class="Box" onclick="showPage('dashboard-page')">
+                    <p class="Head">Dashboard</p>
+                    <p class="Small">สรุปรายรับ - รายจ่าย</p>
+                </div>
+                <div class="Box" onclick="showPage('report-page')">
+                    <p class="Head">Report</p>
+                    <p class="Small">รายงานการขาย</p>
+                </div>
+                <div class="Box" onclick="showPage('more-page')">
+                    <p class="Head">More</p>
+                    <p class="Small">เพิ่มเติม</p>
+                </div>
+            </div>
+            <div class="main-content">
+                <div class="dashboard-container">
+                    <p class="dashboard-Head">Dashboard</p>
+                </div>
+                <div class="dashboard-date">
+
+                </div>
+                <div class="dashboard-histro">
+
+                </div>
+                <div class="dashboard-summarize">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="report-page" class="hidden">
+        <div class="layout">
+            <div class="sidebar">
+                <img src="imges/img.png" alt="">
+                <div class="Box" onclick="showPage('dashboard-page')">
+                    <p class="Head">Dashboard</p>
+                    <p class="Small">สรุปรายรับ - รายจ่าย</p>
+                </div>
+                <div class="Box" onclick="showPage('report-page')">
+                    <p class="Head">Report</p>
+                    <p class="Small">รายงานการขาย</p>
+                </div>
+                <div class="Box" onclick="showPage('more-page')">
+                    <p class="Head">More</p>
+                    <p class="Small">เพิ่มเติม</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="more-page" class="hidden">
+        <div class="layout">
+            <div class="sidebar">
+                <img src="imges/img.png" alt="">
+                <div class="Box" onclick="showPage('dashboard-page')">
+                    <p class="Head">Dashboard</p>
+                    <p class="Small">สรุปรายรับ - รายจ่าย</p>
+                </div>
+                <div class="Box" onclick="showPage('report-page')">
+                    <p class="Head">Report</p>
+                    <p class="Small">รายงานการขาย</p>
+                </div>
+                <div class="Box" onclick="showPage('more-page')">
+                    <p class="Head">More</p>
+                    <p class="Small">เพิ่มเติม</p>
+                </div>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
