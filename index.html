@@ -10,110 +10,300 @@
 </head>
 
 <body>
-    <div id="login-page">
+    <!-- ══════════════ LOGIN ══════════════ -->
+    <div id="login-page" class="page">
         <div class="auth-layout">
-            <div class="auth-card">
+            <form class="auth-card" id="login-form">
                 <img class="auth-logo" src="imges/img.png" alt="StockBite logo">
                 <h1 class="auth-title">StockBite</h1>
                 <p class="auth-subtitle">ล็อกอินเพื่อเข้าสู่ระบบสรุปรายรับ-รายจ่าย</p>
                 <label class="auth-label" for="login-email">อีเมล</label>
-                <input id="login-email" class="auth-input" type="email" placeholder="you@gmail.com">
+                <input id="login-email" class="auth-input" type="email" placeholder="you@gmail.com" autocomplete="email">
                 <label class="auth-label" for="login-password">รหัสผ่าน</label>
-                <input id="login-password" class="auth-input" type="password" placeholder="••••••••">
-                <button class="auth-button" type="button" onclick="showPage('dashboard-page')">เข้าสู่ระบบ</button>
-            </div>
+                <input id="login-password" class="auth-input" type="password" placeholder="••••••••" autocomplete="current-password">
+                <button class="auth-button" type="submit">เข้าสู่ระบบ</button>
+                <p class="auth-hint"> ร้าน 3 หนุ่ม — ระบบสรุปยอดขายแบบง่าย ๆ</p>
+            </form>
         </div>
     </div>
-    <div id="main-page" class="hidden">
-        <div class="container">
-            <img src="imges/img.png" alt="">
-            <div class="box-row">
-                <div class="Box" onclick="showPage('dashboard-page')">
-                    <p class="Head">Dashboard</p>
-                    <p class="Small">สรุปรายรับ - รายจ่าย</p>
-                </div>
-                <div class="Box" onclick="showPage('report-page')">
-                    <p class="Head">Report</p>
-                    <p class="Small">รายงานการขาย</p>
-                </div>
-                <div class="Box" onclick="showPage('more-page')">
-                    <p class="Head">More</p>
-                    <p class="Small">เพิ่มเติม</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="dashboard-page" class="hidden">
-        <div class="layout">
-            <div class="sidebar">
-                <img src="imges/img.png" alt="">
-                <div class="Box" onclick="showPage('dashboard-page')">
-                    <p class="Head">Dashboard</p>
-                    <p class="Small">สรุปรายรับ - รายจ่าย</p>
-                </div>
-                <div class="Box" onclick="showPage('report-page')">
-                    <p class="Head">Report</p>
-                    <p class="Small">รายงานการขาย</p>
-                </div>
-                <div class="Box" onclick="showPage('more-page')">
-                    <p class="Head">More</p>
-                    <p class="Small">เพิ่มเติม</p>
-                </div>
-            </div>
-            <div class="main-content">
-                <div class="dashboard-container">
-                    <p class="dashboard-Head">Dashboard</p>
-                </div>
-                <div class="dashboard-date">
 
+    <!-- ══════════════ APP SHELL ══════════════ -->
+    <div id="app" class="page hidden">
+        <div class="app-shell">
+            <!-- Sidebar (desktop / tablet) -->
+            <aside class="sidebar">
+                <div class="sidebar-brand">
+                    <img src="imges/img.png" alt="StockBite">
+                    <div class="sidebar-brand-text">
+                        <span class="brand-name">ร้าน 3 หนุ่ม</span>
+                        <span class="brand-sub">ร้าน 3 หนุ่ม</span>
+                    </div>
                 </div>
-                <div class="dashboard-histro">
+                <nav class="sidebar-nav">
+                    <button class="nav-item is-active" data-view="dashboard">
+                        <span class="nav-ico"></span>
+                        <span class="nav-text">
+                            <span class="nav-label">Dashboard</span>
+                            <span class="nav-thai">ภาพรวมการเงินของร้าน</span>
+                        </span>
+                    </button>
+                    <button class="nav-item" data-view="report">
+                        <span class="nav-ico"></span>
+                        <span class="nav-text">
+                            <span class="nav-label">Report</span>
+                            <span class="nav-thai">รายงาน</span>
+                        </span>
+                    </button>
+                    <button class="nav-item" data-view="more">
+                        <span class="nav-ico"></span>
+                        <span class="nav-text">
+                            <span class="nav-label">More</span>
+                            <span class="nav-thai">เพิ่มเติม</span>
+                        </span>
+                    </button>
+                </nav>
+                <button class="sidebar-add" data-action="open-add">เพิ่มรายการ</button>
+            </aside>
 
-                </div>
-                <div class="dashboard-summarize">
+            <!-- Main content -->
+            <main class="app-main">
+                <!-- DASHBOARD VIEW -->
+                <section id="view-dashboard" class="view">
+                    <!-- 1. Hero card — large pink rounded -->
+                    <div class="hero-card" id="hero-card">
+                        <div class="hero-top">
+                            <div>
+                                <h1 class="hero-title">Dashboard</h1>
+                                <p class="hero-sub">ภาพรวมการเงินของร้าน</p>
+                            </div>
+                            <button class="btn-primary btn-white" data-action="open-add">เพิ่มรายการ</button>
+                        </div>
+                        <div class="hero-summary" id="hero-summary">
+                            <div class="hero-stat">
+                                <span class="hero-stat-label">รายรับ</span>
+                                <span class="hero-stat-val income-val" id="hero-income">฿0</span>
+                            </div>
+                            <div class="hero-divider"></div>
+                            <div class="hero-stat">
+                                <span class="hero-stat-label">รายจ่าย</span>
+                                <span class="hero-stat-val expense-val" id="hero-expense">฿0</span>
+                            </div>
+                            <div class="hero-divider"></div>
+                            <div class="hero-stat">
+                                <span class="hero-stat-label">กำไรสุทธิ</span>
+                                <span class="hero-stat-val profit-val" id="hero-profit">฿0</span>
+                            </div>
+                        </div>
+                    </div>
 
+                    <!-- 2. Thin white bar — date filter -->
+                    <div class="filter-bar">
+                        <div class="segmented" id="dash-filter">
+                            <button class="seg is-active" data-range="today">วันนี้</button>
+                            <button class="seg" data-range="7d">7 วัน</button>
+                            <button class="seg" data-range="month">เดือนนี้</button>
+                        </div>
+                        <span class="filter-hint" id="filter-hint"></span>
+                    </div>
+
+                    <!-- 3+4. Two-column: large main card + narrow side card -->
+                    <div class="dash-columns">
+                        <!-- Large white main card -->
+                        <div class="dash-main-card">
+                            <div class="panel-head">
+                                <h2 class="panel-title">รายรับ vs รายจ่าย</h2>
+                                <span class="panel-note">7 วันล่าสุด</span>
+                            </div>
+                            <div class="chart" id="bar-chart"></div>
+                            <div class="chart-legend">
+                                <span><i class="dot dot-income"></i> รายรับ</span>
+                                <span><i class="dot dot-expense"></i> รายจ่าย</span>
+                            </div>
+
+                            <div class="dash-section-divider"></div>
+
+                            <div class="panel-head">
+                                <h2 class="panel-title">รายการล่าสุด</h2>
+                                <span class="panel-note" id="dash-tx-count"></span>
+                            </div>
+                            <div id="dash-transactions" class="tx-list"></div>
+                        </div>
+
+                        <!-- Narrow white side card -->
+                        <div class="dash-side-card">
+                            <div class="panel-head">
+                                <h2 class="panel-title">หมวดรายจ่าย</h2>
+                                <span class="panel-note">ตามช่วงที่เลือก</span>
+                            </div>
+                            <div id="category-breakdown" class="cat-list"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- REPORT VIEW -->
+                <section id="view-report" class="view hidden">
+                    <header class="view-head">
+                        <div>
+                            <h1 class="view-title">Report</h1>
+                            <p class="view-sub">รายงานการขายแบบละเอียด</p>
+                        </div>
+                        <button class="btn-primary" data-action="open-add">เพิ่มรายการ</button>
+                    </header>
+
+                    <div class="report-filters">
+                        <label class="field">
+                            <span class="field-label">ตั้งแต่วันที่</span>
+                            <input type="date" id="report-from" class="input">
+                        </label>
+                        <label class="field">
+                            <span class="field-label">ถึงวันที่</span>
+                            <input type="date" id="report-to" class="input">
+                        </label>
+                        <label class="field">
+                            <span class="field-label">ประเภท</span>
+                            <select id="report-type" class="input">
+                                <option value="all">ทั้งหมด</option>
+                                <option value="income">รายรับ</option>
+                                <option value="expense">รายจ่าย</option>
+                            </select>
+                        </label>
+                        <label class="field">
+                            <span class="field-label">หมวดหมู่</span>
+                            <select id="report-category" class="input"></select>
+                        </label>
+                    </div>
+
+                    <div class="cards-grid" id="report-cards"></div>
+
+                    <div class="panel">
+                        <div class="panel-head">
+                            <h2 class="panel-title">รายการทั้งหมด</h2>
+                            <span class="panel-note" id="report-tx-count"></span>
+                        </div>
+                        <div id="report-transactions" class="tx-list"></div>
+                    </div>
+                </section>
+
+                <!-- MORE VIEW -->
+                <section id="view-more" class="view hidden">
+                    <header class="view-head">
+                        <div>
+                            <h1 class="view-title">More</h1>
+                            <p class="view-sub">ตั้งค่าและข้อมูลเพิ่มเติม</p>
+                        </div>
+                    </header>
+
+                    <div class="panel">
+                        <h2 class="panel-title">โปรไฟล์ร้าน</h2>
+                        <div class="setting-row">
+                            <span class="setting-ico"></span>
+                            <div>
+                                <p class="setting-name">ร้าน 3 หนุ่ม</p>
+                                <p class="setting-desc" id="more-email">—</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <h2 class="panel-title">ตั้งค่า</h2>
+                        <div class="setting-row">
+                            <span class="setting-ico"></span>
+                            <div><p class="setting-name">การแจ้งเตือน</p><p class="setting-desc">เตือนเมื่อยอดรายจ่ายสูง</p></div>
+                            <span class="setting-badge">เร็ว ๆ นี้</span>
+                        </div>
+                        <div class="setting-row">
+                            <span class="setting-ico"></span>
+                            <div><p class="setting-name">ธีมสี</p><p class="setting-desc">พาสเทลครีม (ค่าเริ่มต้น)</p></div>
+                            <span class="setting-badge">เร็ว ๆ นี้</span>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <h2 class="panel-title">ข้อมูล</h2>
+                        <div class="setting-row">
+                            <span class="setting-ico"></span>
+                            <div><p class="setting-name">จำนวนรายการทั้งหมด</p><p class="setting-desc" id="more-total-count">0 รายการ</p></div>
+                        </div>
+                        <button class="btn-ghost-danger" data-action="reset-data">รีเซ็ตข้อมูลตัวอย่าง</button>
+                    </div>
+
+                    <button class="btn-logout" data-action="logout">ออกจากระบบ</button>
+                </section>
+            </main>
+        </div>
+
+        <!-- Bottom nav (mobile) -->
+        <nav class="bottom-nav">
+            <button class="bn-item is-active" data-view="dashboard"><span class="bn-ico"></span><span>Dashboard</span></button>
+            <button class="bn-item bn-add" data-action="open-add"><span class="bn-plus">+</span></button>
+            <button class="bn-item" data-view="report"><span class="bn-ico"></span><span>Report</span></button>
+            <button class="bn-item" data-view="more"><span class="bn-ico"></span><span>More</span></button>
+        </nav>
+    </div>
+
+    <!-- ══════════════ ADD MODAL ══════════════ -->
+    <div id="add-modal" class="modal-backdrop hidden">
+        <div class="modal">
+            <div class="modal-head">
+                <h2 class="modal-title">เพิ่มรายการ</h2>
+                <button class="modal-close" data-action="close-add" aria-label="ปิด">✕</button>
+            </div>
+            <form id="add-form" class="modal-body">
+                <div class="type-toggle">
+                    <button type="button" class="type-btn is-active" data-type="income">รายรับ</button>
+                    <button type="button" class="type-btn" data-type="expense">รายจ่าย</button>
+                </div>
+
+                <label class="field">
+                    <span class="field-label">จำนวนเงิน (บาท)</span>
+                    <input type="number" id="add-amount" class="input" min="0" step="1" placeholder="0" required>
+                </label>
+
+                <label class="field">
+                    <span class="field-label">หมวดหมู่</span>
+                    <select id="add-category" class="input" required></select>
+                </label>
+
+                <label class="field">
+                    <span class="field-label">รายละเอียด</span>
+                    <input type="text" id="add-description" class="input" placeholder="เช่น ขายขนม, ซื้อวัตถุดิบ" required>
+                </label>
+
+                <div class="field-row">
+                    <label class="field">
+                        <span class="field-label">วันที่</span>
+                        <input type="date" id="add-date" class="input" required>
+                    </label>
+                    <label class="field">
+                        <span class="field-label">เวลา</span>
+                        <input type="time" id="add-time" class="input" required>
+                    </label>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-ghost" data-action="close-add">ยกเลิก</button>
+                    <button type="submit" class="btn-primary">บันทึก</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="delete-modal" class="modal-backdrop hidden">
+        <div class="modal">
+            <div class="modal-head">
+                <h2 class="modal-title">ยืนยันการลบ</h2>
+                <button class="modal-close" data-action="close-delete" aria-label="ปิด">✕</button>
+            </div>
+            <div class="modal-body">
+                <p class="confirm-message">คุณต้องการลบรายการนี้ใช่หรือไม่?</p>
+                <div class="modal-actions">
+                    <button type="button" class="btn-ghost" data-action="close-delete">ยกเลิก</button>
+                    <button type="button" class="btn-primary" data-action="confirm-delete">ลบ</button>
                 </div>
             </div>
         </div>
     </div>
-    <div id="report-page" class="hidden">
-        <div class="layout">
-            <div class="sidebar">
-                <img src="imges/img.png" alt="">
-                <div class="Box" onclick="showPage('dashboard-page')">
-                    <p class="Head">Dashboard</p>
-                    <p class="Small">สรุปรายรับ - รายจ่าย</p>
-                </div>
-                <div class="Box" onclick="showPage('report-page')">
-                    <p class="Head">Report</p>
-                    <p class="Small">รายงานการขาย</p>
-                </div>
-                <div class="Box" onclick="showPage('more-page')">
-                    <p class="Head">More</p>
-                    <p class="Small">เพิ่มเติม</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="more-page" class="hidden">
-        <div class="layout">
-            <div class="sidebar">
-                <img src="imges/img.png" alt="">
-                <div class="Box" onclick="showPage('dashboard-page')">
-                    <p class="Head">Dashboard</p>
-                    <p class="Small">สรุปรายรับ - รายจ่าย</p>
-                </div>
-                <div class="Box" onclick="showPage('report-page')">
-                    <p class="Head">Report</p>
-                    <p class="Small">รายงานการขาย</p>
-                </div>
-                <div class="Box" onclick="showPage('more-page')">
-                    <p class="Head">More</p>
-                    <p class="Small">เพิ่มเติม</p>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <script src="script.js"></script>
 </body>
 
