@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <!-- ══════════════ LOGIN ══════════════ -->
+    
     <div id="login-page" class="page">
         <div class="auth-layout">
             <form class="auth-card" id="login-form">
@@ -27,10 +27,10 @@
         </div>
     </div>
 
-    <!-- ══════════════ APP SHELL ══════════════ -->
+    
     <div id="app" class="page hidden">
         <div class="app-shell">
-            <!-- Sidebar (desktop / tablet) -->
+            
             <aside class="sidebar">
                 <div class="sidebar-brand">
                     <img src="imges/img.png" alt="StockBite">
@@ -65,11 +65,9 @@
                 <button class="sidebar-add" data-action="open-add">เพิ่มรายการ</button>
             </aside>
 
-            <!-- Main content -->
+            
             <main class="app-main">
-                <!-- DASHBOARD VIEW -->
                 <section id="view-dashboard" class="view">
-                    <!-- 1. Hero card — large pink rounded -->
                     <div class="hero-card" id="hero-card">
                         <div class="hero-top">
                             <div>
@@ -96,7 +94,6 @@
                         </div>
                     </div>
 
-                    <!-- 2. Thin white bar — date filter -->
                     <div class="filter-bar">
                         <div class="segmented" id="dash-filter">
                             <button class="seg is-active" data-range="today">วันนี้</button>
@@ -106,9 +103,7 @@
                         <span class="filter-hint" id="filter-hint"></span>
                     </div>
 
-                    <!-- 3+4. Two-column: large main card + narrow side card -->
                     <div class="dash-columns">
-                        <!-- Large white main card -->
                         <div class="dash-main-card">
                             <div class="panel-head">
                                 <h2 class="panel-title">รายรับ vs รายจ่าย</h2>
@@ -129,7 +124,6 @@
                             <div id="dash-transactions" class="tx-list"></div>
                         </div>
 
-                        <!-- Narrow white side card -->
                         <div class="dash-side-card">
                             <div class="panel-head">
                                 <h2 class="panel-title">หมวดรายจ่าย</h2>
@@ -140,7 +134,6 @@
                     </div>
                 </section>
 
-                <!-- REPORT VIEW -->
                 <section id="view-report" class="view hidden">
                     <header class="view-head">
                         <div>
@@ -184,7 +177,6 @@
                     </div>
                 </section>
 
-                <!-- MORE VIEW -->
                 <section id="view-more" class="view hidden">
                     <header class="view-head">
                         <div>
@@ -232,7 +224,6 @@
             </main>
         </div>
 
-        <!-- Bottom nav (mobile) -->
         <nav class="bottom-nav">
             <button class="bn-item is-active" data-view="dashboard"><span class="bn-ico"></span><span>Dashboard</span></button>
             <button class="bn-item bn-add" data-action="open-add"><span class="bn-plus">+</span></button>
@@ -241,7 +232,6 @@
         </nav>
     </div>
 
-    <!-- ══════════════ ADD MODAL ══════════════ -->
     <div id="add-modal" class="modal-backdrop hidden">
         <div class="modal">
             <div class="modal-head">

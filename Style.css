@@ -64,7 +64,6 @@ button {
     cursor: pointer;
 }
 
-/* ══════════════ LOGIN ══════════════ */
 .auth-layout {
     min-height: 100vh;
     display: flex;
@@ -156,7 +155,6 @@ button {
     color: var(--ink-soft);
 }
 
-/* ══════════════ APP SHELL ══════════════ */
 .app-shell {
     display: grid;
     grid-template-columns: 248px 1fr;
@@ -165,7 +163,6 @@ button {
     margin: 0 auto;
 }
 
-/* ── Sidebar ── */
 .sidebar {
     display: flex;
     flex-direction: column;
@@ -292,7 +289,6 @@ button {
     transform: translateY(-1px);
 }
 
-/* ── Main ── */
 .app-main {
     padding: 1.75rem clamp(1rem, 3vw, 2.25rem) 3rem;
     min-width: 0;
@@ -336,7 +332,6 @@ button {
     transform: translateY(-1px);
 }
 
-/* ── Segmented filter ── */
 .segmented {
     display: inline-flex;
     gap: 0.25rem;
@@ -365,7 +360,6 @@ button {
     font-weight: 600;
 }
 
-/* ── Summary cards ── */
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -373,7 +367,6 @@ button {
     margin-bottom: 1.5rem;
 }
 
-/* ══════════════ DASHBOARD HERO CARD (pink) ══════════════ */
 .hero-card {
     background: linear-gradient(135deg, #ffb3a7 0%, #ff9d8f 40%, #ffb8c6 100%);
     border-radius: var(--radius-lg);
@@ -453,8 +446,6 @@ button {
     background: rgba(255,255,255,0.35);
     margin: 0.35rem 0;
 }
-
-/* ── Filter bar (thin white) ── */
 .filter-bar {
     display: flex;
     align-items: center;
@@ -481,7 +472,6 @@ button {
     margin-left: auto;
 }
 
-/* ── Two-column dash layout ── */
 .dash-columns {
     display: grid;
     grid-template-columns: 1.45fr 1fr;
@@ -577,7 +567,6 @@ button {
 .c-count .stat-ico { background: var(--neutral-soft); }
 .c-count .stat-value { color: var(--neutral-text); }
 
-/* ── Panels ── */
 .panels-grid {
     display: grid;
     grid-template-columns: 1.4fr 1fr;
@@ -616,7 +605,6 @@ button {
     color: var(--ink-soft);
 }
 
-/* ── CSS bar chart ── */
 .chart {
     display: grid;
     grid-auto-flow: column;
@@ -680,7 +668,6 @@ button {
 .dot-income { background: var(--income); }
 .dot-expense { background: var(--expense); }
 
-/* ── Category breakdown ── */
 .cat-list {
     display: flex;
     flex-direction: column;
@@ -716,7 +703,6 @@ button {
     transition: width var(--t);
 }
 
-/* ── Transaction list ── */
 .tx-list {
     display: flex;
     flex-direction: column;
@@ -802,7 +788,6 @@ button {
     transform: translateY(-1px);
 }
 
-/* ── Empty state ── */
 .empty {
     text-align: center;
     padding: 2.5rem 1rem;
@@ -814,7 +799,6 @@ button {
     font-size: 1rem;
 }
 
-/* ── Report filters ── */
 .report-filters {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -857,7 +841,6 @@ button {
     box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
-/* ── More / settings ── */
 .setting-row {
     display: flex;
     align-items: center;
@@ -934,7 +917,6 @@ button {
     opacity: 0.88;
 }
 
-/* ══════════════ MODAL ══════════════ */
 .modal-backdrop {
     position: fixed;
     inset: 0;
@@ -1068,12 +1050,10 @@ button {
     color: var(--ink);
 }
 
-/* ══════════════ BOTTOM NAV (mobile) ══════════════ */
 .bottom-nav {
     display: none;
 }
 
-/* ══════════════ RESPONSIVE ══════════════ */
 @media (max-width: 1080px) {
     .cards-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1139,7 +1119,6 @@ button {
         margin-left: 0;
     }
 
-    /* bottom nav visible */
     .bottom-nav {
         display: grid;
         grid-template-columns: repeat(4, 1fr);

@@ -1,6 +1,3 @@
-/* ══════════════════════════════════════════
-   StockBite — dashboard logic (vanilla JS)
-   ══════════════════════════════════════════ */
 
 const STORAGE_KEY = 'stockbite_transactions';
 
@@ -11,13 +8,11 @@ const CATEGORIES = {
 
 const DAY_LABELS = ['อา.', 'จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.'];
 
-/* ── State ── */
 let transactions = [];
 let dashRange = 'today';
 let addType = 'income';
 let pendingDeleteId = null;
 
-/* ══════════ Date helpers ══════════ */
 function pad(n) { return String(n).padStart(2, '0'); }
 
 function toISODate(d) {
@@ -32,7 +27,6 @@ function daysAgoISO(n) {
     return toISODate(d);
 }
 
-/* ══════════ Formatting ══════════ */
 function formatBaht(n) {
     return new Intl.NumberFormat('th-TH').format(Math.round(n)) + ' ฿';
 }
@@ -45,7 +39,6 @@ function formatDateLabel(iso) {
     return `${d}/${m}`;
 }
 
-/* ══════════ Persistence ══════════ */
 function loadTransactions() {
     try {
         const raw = localStorage.getItem(STORAGE_KEY);
@@ -67,13 +60,11 @@ function saveTransactions() {
     }
 }
 
-/* ══════════ Sample data ══════════ */
 function makeId() {
     return 'tx_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 }
 
 function sampleData() {
-    // day offset, type, amount, category, description, time
     const rows = [
         [0, 'income', 850, 'การขาย', 'ขายขนมช่วงเช้า', '08:45'],
         [0, 'income', 1200, 'การขาย', 'ขายเครื่องดื่มปั่น', '10:20'],
@@ -106,7 +97,6 @@ function sampleData() {
     }));
 }
 
-/* ══════════ Filtering ══════════ */
 function rangeStartISO(range) {
     if (range === 'today') return todayISO();
     if (range === '7d') return daysAgoISO(6);
@@ -136,7 +126,6 @@ function totals(list) {
     return { income, expense, profit: income - expense, count: list.length };
 }
 
-/* ══════════ Rendering: summary cards ══════════ */
 function renderSummaryCards(el, list) {
     const t = totals(list);
     const profitSign = t.profit < 0 ? '-' : '';
@@ -159,7 +148,6 @@ function renderSummaryCards(el, list) {
         </div>`;
 }
 
-/* ══════════ Rendering: bar chart (last 7 days) ══════════ */
 function renderBarChart(el) {
     const days = [];
     for (let i = 6; i >= 0; i--) {
@@ -187,7 +175,6 @@ function renderBarChart(el) {
     }).join('');
 }
 
-/* ══════════ Rendering: category breakdown ══════════ */
 function renderCategoryBreakdown(el, list) {
     const expenses = list.filter(t => t.type === 'expense');
     if (expenses.length === 0) {
@@ -212,7 +199,6 @@ function renderCategoryBreakdown(el, list) {
     }).join('');
 }
 
-/* ══════════ Rendering: transaction list ══════════ */
 function txItemHTML(t) {
     const sign = t.type === 'income' ? '+' : '-';
     return `
@@ -249,12 +235,10 @@ function escapeHTML(s) {
     ));
 }
 
-/* ══════════ Dashboard render ══════════ */
 function renderDashboard() {
     const list = filterByRange(dashRange);
     const t = totals(list);
 
-    // Hero card summary
     document.getElementById('hero-income').textContent = formatBaht(t.income);
     document.getElementById('hero-expense').textContent = formatBaht(t.expense);
     const profitEl = document.getElementById('hero-profit');
@@ -262,7 +246,6 @@ function renderDashboard() {
     profitEl.textContent = profitSign + formatBaht(Math.abs(t.profit));
     profitEl.style.color = t.profit < 0 ? 'var(--expense-text)' : '';
 
-    // Filter hint
     const rangeText = { today: 'วันนี้', '7d': '7 วันล่าสุด', month: 'เดือนนี้' }[dashRange];
     document.getElementById('filter-hint').textContent = `${t.count} รายการ`;
 
@@ -276,7 +259,6 @@ function renderDashboard() {
     );
 }
 
-/* ══════════ Report render ══════════ */
 function getReportFilters() {
     return {
         from: document.getElementById('report-from').value,
@@ -313,14 +295,12 @@ function populateReportCategoryFilter() {
     ).join('');
 }
 
-/* ══════════ More render ══════════ */
 function renderMore() {
     document.getElementById('more-total-count').textContent = `${transactions.length} รายการ`;
     const email = localStorage.getItem('stockbite_email') || '—';
     document.getElementById('more-email').textContent = email;
 }
 
-/* ══════════ Navigation ══════════ */
 function navigate(view) {
     document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
     const target = document.getElementById('view-' + view);
@@ -338,7 +318,6 @@ function navigate(view) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-/* ══════════ Login / logout ══════════ */
 function showApp() {
     document.getElementById('login-page').classList.add('hidden');
     document.getElementById('app').classList.remove('hidden');
@@ -351,7 +330,6 @@ function logout() {
     window.scrollTo({ top: 0 });
 }
 
-/* ══════════ Modal ══════════ */
 function openAddModal() {
     document.getElementById('add-date').value = todayISO();
     const now = new Date();
@@ -425,7 +403,6 @@ function resetData() {
     navigate('dashboard');
 }
 
-/* ══════════ Event wiring ══════════ */
 function initEvents() {
     // Login
     document.getElementById('login-form').addEventListener('submit', e => {
@@ -435,12 +412,10 @@ function initEvents() {
         showApp();
     });
 
-    // Sidebar + bottom nav navigation
     document.querySelectorAll('[data-view]').forEach(btn => {
         btn.addEventListener('click', () => navigate(btn.dataset.view));
     });
 
-    // Dashboard range filter
     document.getElementById('dash-filter').addEventListener('click', e => {
         const btn = e.target.closest('.seg');
         if (!btn) return;
@@ -450,20 +425,16 @@ function initEvents() {
         renderDashboard();
     });
 
-    // Report filters
     ['report-from', 'report-to', 'report-type', 'report-category'].forEach(id => {
         document.getElementById(id).addEventListener('change', renderReport);
     });
 
-    // Add-type toggle
     document.querySelectorAll('.type-btn').forEach(b => {
         b.addEventListener('click', () => setAddType(b.dataset.type));
     });
 
-    // Add form
     document.getElementById('add-form').addEventListener('submit', handleAddSubmit);
 
-    // Global action clicks (data-action) + delete buttons (data-del)
     document.body.addEventListener('click', e => {
         const actionEl = e.target.closest('[data-action]');
         if (actionEl) {
@@ -480,7 +451,6 @@ function initEvents() {
         if (delEl) openDeleteModal(delEl.dataset.del);
     });
 
-    // Close modal on backdrop click
     document.getElementById('add-modal').addEventListener('click', e => {
         if (e.target.id === 'add-modal') closeAddModal();
     });
@@ -488,7 +458,6 @@ function initEvents() {
         if (e.target.id === 'delete-modal') closeDeleteModal();
     });
 
-    // Escape closes modal
     document.addEventListener('keydown', e => {
         if (e.key === 'Escape') {
             closeAddModal();
@@ -497,7 +466,6 @@ function initEvents() {
     });
 }
 
-/* ══════════ Bootstrap ══════════ */
 function init() {
     const loaded = loadTransactions();
     if (loaded && loaded.length) {
@@ -507,8 +475,7 @@ function init() {
         saveTransactions();
     }
     populateReportCategoryFilter();
-
-    // Default report date range: last 7 days
+    
     document.getElementById('report-from').value = daysAgoISO(6);
     document.getElementById('report-to').value = todayISO();
     document.getElementById('report-category').value = 'all';
